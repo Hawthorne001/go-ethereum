@@ -20,6 +20,7 @@ import (
 	"container/heap"
 	"math"
 	"math/big"
+	"slices"
 	"sort"
 	"sync"
 	"sync/atomic"
@@ -28,7 +29,6 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/holiman/uint256"
-	"golang.org/x/exp/slices"
 )
 
 // nonceHeap is a heap.Interface implementation over 64bit unsigned integers for
@@ -278,7 +278,7 @@ type list struct {
 	totalcost *uint256.Int // Total cost of all transactions in the list
 }
 
-// newList create a new transaction list for maintaining nonce-indexable fast,
+// newList creates a new transaction list for maintaining nonce-indexable fast,
 // gapped, sortable transaction lists.
 func newList(strict bool) *list {
 	return &list{
